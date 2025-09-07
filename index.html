@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="validation.css">
+    <script src="validation.js" defer></script>
+    
+    <title>FormValidation</title>
+</head>
+<body>
+    <form id="myForm" novalidate>
+        <p>
+            <label for="mail">Email</label> 
+            <input type="email" id="mail" name="mail">
+            <span class="error" aria-live="polite"></span>
+        </p>
+        <p>
+            <label for="country">Country</label> 
+            <input type="text" id="country" name="country">
+            <span class="error" aria-live="polite"></span>
+
+        </p>
+        <p>
+            <label for="postal">Postal Code</label> 
+            <input type="text" id="postal" name="postal">
+            <span class="error" aria-live="polite"></span>
+
+        </p>
+        <p>
+            <label for="password">Password</label> 
+            <input type="password" id="password" name="password">
+            <span class="error" aria-live="polite"></span>
+
+        </p>
+        <p>
+            <label for="confirmation">Password Confirmation</label> 
+            <input type="password" id="confirmation" name="confirmation">
+            <span class="error" aria-live="polite"></span>
+
+        </p>
+        <button>Submit</button>
+       
+    </form>
+    
+</body>
+</html>

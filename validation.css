@@ -1,0 +1,12 @@
+form {
+    border: solid;
+    color: black;
+    width: fit-content;
+    padding: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 4px; /* optional spacing */
+  }
+  
