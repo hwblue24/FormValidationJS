@@ -1,55 +1,38 @@
 // required for submit event listener
 const form = document.querySelector("#myForm");
-const formFields = document.querySelectorAll(".formField")
+const paragraphs = document.querySelectorAll("p")
 
 
-formFields.forEach( function (input) {
-    input.addEventListener("input",(event) => {
-        if (input.id === "mail") {
-            const emailError = document.querySelector("span.error");
-            if (input.validity.valid) {
-                emailError.textContent = ""
-                emailError.className = "error"
-            } else {
-                emailValidationError(input, emailError);
-            }
-           
-        } else if (input.id === "country") {
-            console.log("country")
-            
-        } else if (input.id === "postal") {
-            console.log("postal code")
-            
-        } else if (input.id === "password") {
-            console.log("pass")
-
-        } else if (input.id === "confirmation") {
-            console.log("confirmation")
-
+paragraphs.forEach( function (p) {
+    const inputField = p.children[1]
+    const spanError = p.children[2]
+    inputField.addEventListener("input",(event) => { 
+        if (inputField.validity.valid) {
+            spanError.textContent = ""
+            spanError.className = "error"
+        }else { 
+            emailValidationError(inputField, spanError)
         }
+
     }) 
+    
     
 })
 
 
-function emailValidationError (input, emailError) {
-    if (input.validity.valueMissing) {
+function emailValidationError (inputField, spanError) {
+    if (inputField.validity.valueMissing) {
     // If empty
-    console.log("empty")
-    emailError.textContent = "You need to enter an email address.";
-  } else if (input.validity.typeMismatch) {
+    spanError.textContent = "Cannot leave blank.";
+  } else if (inputField.validity.typeMismatch) {
     // If it's not an email address,
-    emailError.textContent = "Entered value needs to be an email address.";
+    spanError.textContent = "Entered value needs to be an email address.";
   } 
   
-  //emailError.className = "error active"
+  spanError.className = "error active"
 
 }
 
-//function emailValidation () {}
 
-//function emailValidation () {}
-
-//function emailValidation () {}
 
 
