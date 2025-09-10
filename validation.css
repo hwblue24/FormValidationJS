@@ -1,3 +1,8 @@
+body {
+    display:flex;
+    justify-content: center;
+}
+
 form {
     border: solid;
     color: black;
@@ -5,8 +10,46 @@ form {
     padding: 10px;
 }
 
+input {
+    appearance: none;
+    width:100%;
+    box-sizing: border-box;
+
+}
+
 label {
     display: block;
     margin-bottom: 4px; /* optional spacing */
   }
   
+span.error {
+    display:block;
+}
+
+/* invalid fields */
+input:invalid {
+    border-color: #990000;
+    background-color: #ffdddd;
+}
+  
+  input:focus:invalid {
+    outline: none;
+}
+
+
+/* error message styles */
+.error {
+    width: 100%;
+    padding: 0;
+  
+    font-size: 90%;
+    color: rgb(255, 255, 255);
+    background-color: #990000;
+    border-radius: 0 0 5px 5px;
+  
+    box-sizing: border-box;
+}
+
+.error.active {
+    padding:0.5em;
+}
