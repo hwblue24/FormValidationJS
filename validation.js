@@ -2,14 +2,23 @@
 const form = document.querySelector("#myForm");
 const paragraphs = document.querySelectorAll("p")
 
+const confirmPasswordDiv = document.querySelector("#confirmPasswordDiv")
 
+let savedPassword = "" 
+
+//loops through p element 
 paragraphs.forEach( function (p) {
+     /// grabs input and span elements for each
     const inputField = p.children[1]
     const spanError = p.children[2]
+    //attaches input event listener to each input field
     inputField.addEventListener("input",(event) => { 
         if (inputField.validity.valid) {
             spanError.textContent = ""
-            spanError.className = "error"
+            spanError.className = "error" 
+            if(inputField.id === "password") {
+                savedPassword = inputField.value;
+            }
         }else if (inputField.id === "mail")  { 
             emailValidationError(inputField, spanError)
         }else if (inputField.id === "country") {
@@ -18,14 +27,33 @@ paragraphs.forEach( function (p) {
             postalValidationError(inputField, spanError)
         }else if (inputField.id === "password") { 
             passwordValidationError(inputField, spanError) 
-        } else if (inputField.id === "confirmPassword") { 
-            confirmPasswordValidationError(inputField, spanError) 
-        }
+        } 
 
     }) 
     
-    
 })
+
+
+//handles password matching 
+confirmPasswordDiv.addEventListener("input", () => {
+    const input = confirmPasswordDiv.children[1];
+    const span = confirmPasswordDiv.children[2]
+    if(input.value === savedPassword) {
+        span.textContent = ""
+        span.className = "error"
+        
+    } else if (input.validity.valueMissing) {
+        span.textContent = "Need to confirm"
+        span.className = "error active"
+        
+    } else {
+        span.textContent = "Password Does Not Match"
+        span.className = "error active"
+    }
+        
+
+})
+
 
 
 
@@ -79,10 +107,7 @@ function passwordValidationError(inputField, spanError) {
     spanError.className = "error active"
 }
 
-function confirmPasswordValidationError(inputField, spanError, password) {
-    if (inputField.validity.valueMissing) {
-        //if empty 
-        spanError.textContent = "Cannot leave blank.";
-    }
-    spanError.className = "error active"
-}
+
+
+
+
