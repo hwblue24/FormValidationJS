@@ -6,6 +6,17 @@ const confirmPasswordDiv = document.querySelector("#confirmPasswordDiv")
 
 let savedPassword = "" 
 
+
+form.addEventListener("submit", (event)  => {
+    const header = document.querySelector("h3"); 
+    if (!form.checkValidity()) {
+        header.textContent = "You need to fill out all the fields!"
+        event.preventDefault();
+    }else {
+        header.textContent = ""
+    }
+})
+
 //loops through p element 
 paragraphs.forEach( function (p) {
      /// grabs input and span elements for each
@@ -39,14 +50,17 @@ confirmPasswordDiv.addEventListener("input", () => {
     const input = confirmPasswordDiv.children[1];
     const span = confirmPasswordDiv.children[2]
     if(input.value === savedPassword) {
+        input.setCustomValidity ("")
         span.textContent = ""
         span.className = "error"
         
     } else if (input.validity.valueMissing) {
+        input.setCustomValidity ("Need to confirm")
         span.textContent = "Need to confirm"
         span.className = "error active"
         
     } else {
+        input.setCustomValidity ("Password Does Not Match")
         span.textContent = "Password Does Not Match"
         span.className = "error active"
     }
@@ -55,7 +69,7 @@ confirmPasswordDiv.addEventListener("input", () => {
 })
 
 
-
+//error handling code 
 
 function emailValidationError (inputField, spanError) {
     if (inputField.validity.valueMissing) {
